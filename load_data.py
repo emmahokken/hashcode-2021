@@ -128,6 +128,7 @@ class Intersection():
             street_str +- street + "\n"
         return street_str
 
+
 class Street():
     def __init__(self, intersect1, intersect2, name, length):
         self.i1 = intersect1
@@ -136,10 +137,11 @@ class Street():
         self.name = name
         self.length = length
 
-        self.traffi_light = TrafficLight()
+        self.traffic_light = TrafficLight()
 
     def __str__(self):
         return f"Street {self.name} from intersection {self.i1} to intersection {self.i2} of length {self.length}"
+
 
 class TrafficLight():
     def __init__(self):
@@ -154,6 +156,7 @@ class TrafficLight():
         self.green = False
         self.has_been_green = True
         self.end = time
+
 
 class Car():
     def __init__(self, start):

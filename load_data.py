@@ -16,6 +16,7 @@ def load_data(filename):
         
         # if you can cast second to int, it is a street
         if street_count < int(no_streets):
+            print(info[0], info[1], info[2], info[3])
             streets.append(Street(info[0], info[1], info[2], info[3]))
             street_count += 1
         else:
@@ -25,11 +26,20 @@ def load_data(filename):
                 car.add_path(street)
             cars.append(car)
 
-    for street in streets:
+    intersections = []
+    for i in range(len(streets) - 1):
+        for j in range(len(streets)):
+            if i == j:
+                intersection = Intersection()
+                intersection.add_street(streets[i])
+                intersection.add_street(streets[i])
+                intersections.append(intersection)
+
         print(street)
 
     simulation.load_streets(streets)
     simulation.load_cars(cars)
+    simulation.load_intersections(intersections)
 
 
 class Simulation():
@@ -44,6 +54,9 @@ class Simulation():
 
     def load_streets(self, streets):
         self.streets = streets
+
+    def load_intersections(self, intersections):
+        self.intersections = intersections
 
     def load_cars(self, cars):
         self.cars = cars
@@ -72,6 +85,14 @@ class Simulation():
 
         self.current_time += 1
 
+class Intersection():
+    def __init__(self):
+        self.streets = []
+
+    def add_street(self, street):
+        self.streets.append(street)
+
+
 class Street():
     def __init__(self, intersect1, intersect2, name, length):
         self.i1 = intersect1
@@ -83,13 +104,12 @@ class Street():
         self.traffi_light = TrafficLight()
 
     def __str__(self):
-        return f"Street {self.name} from i {self.i1} to i {self.i2} of length {self.length}"
+        return f"Street {self.name} from intersection {self.i1} to intersection {self.i2} of length {self.length}"
 
 class TrafficLight():
     def __init__(self):
         self.green = False
         self.has_been_green = False
-        
         
     def turn_green(self, time):
         self.green = True

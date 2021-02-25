@@ -9,14 +9,12 @@ class Intersection():
 
         
     def pick_light(self, street):
-        for street in self.streets:
-            street.traffic_light.
         street = random.choice(self.streets)
 
     def __str__(self):
         street_str = ""
         for street in self.streets:
-            street_str +- street + "\n"
+            street_str += str(street) + "\n"
         return street_str
 
 

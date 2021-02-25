@@ -1,7 +1,7 @@
 from collections import defaultdict 
 import random
 
-from classes import Car, TrafficLight, Intersection
+from classes import Car, TrafficLight, Intersection, Street
 
 filename = 'data/a.txt'
 
@@ -99,6 +99,7 @@ class Simulation():
             for street in intersection.streets:
                 if street.traffic_light.has_been_green() or street.traffic_light.green():
                     # write traffic lights in order
+                    pass
 
     def step(self):
         self.check_if_any_car_reach_destination()

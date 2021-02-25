@@ -1,3 +1,5 @@
+from collections import defaultdict 
+
 filename = 'data/a.txt'
 
 def load_data(filename):
@@ -11,35 +13,33 @@ def load_data(filename):
     street_count = 0
     streets = []
     cars = []
+    intersections = defaultdict(Intersection)
+
     for line in lines[1:]:
         info = line.split()
         
         # if you can cast second to int, it is a street
         if street_count < int(no_streets):
             print(info[0], info[1], info[2], info[3])
-            streets.append(Street(info[0], info[1], info[2], info[3]))
+            street = Street(info[0], info[1], info[2], info[3])
+            streets.append(street)
             street_count += 1
+            intersections[info[1]].add_street(street)
         else:
             car = Car(info[0])
 
             for street in info[1:]:
                 car.add_path(street)
             cars.append(car)
-
-    intersections = []
-    for i in range(len(streets) - 1):
-        for j in range(len(streets)):
-            if i == j:
-                intersection = Intersection()
-                intersection.add_street(streets[i])
-                intersection.add_street(streets[j])
-                intersections.append(intersection)
-
+    
+    for street in streets:
         print(street)
+
+    print(intersections['1'])
 
     simulation.load_streets(streets)
     simulation.load_cars(cars)
-    simulation.load_intersections(intersections)
+    # simulation.load_intersections(intersections)
 
 
 class Simulation():
@@ -92,6 +92,10 @@ class Intersection():
     def add_street(self, street):
         self.streets.append(street)
 
+    # def __str__(self):
+    #     for street in self.streets:
+    #         print(street)
+    #     return 'hoi'
 
 class Street():
     def __init__(self, intersect1, intersect2, name, length):

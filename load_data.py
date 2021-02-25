@@ -32,7 +32,7 @@ def load_data(filename):
             if i == j:
                 intersection = Intersection()
                 intersection.add_street(streets[i])
-                intersection.add_street(streets[i])
+                intersection.add_street(streets[j])
                 intersections.append(intersection)
 
         print(street)

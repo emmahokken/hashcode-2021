@@ -117,4 +117,7 @@ class Car():
             self.end_time = end_time
             self.destination = True
 
+    def __str__(self):
+        return f"I'm a car and I started here: {self.start} and now I'm here {self.position}. Destination: {self.destionation}"
+
 load_data(filename)

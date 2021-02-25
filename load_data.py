@@ -40,6 +40,8 @@ class Simulation():
         self.no_cars = no_cars
         self.score_per_car = score
 
+        self.current_time = 0
+
     def load_streets(self, streets):
         self.streets = streets
 
@@ -48,6 +50,26 @@ class Simulation():
 
         for car in self.cars:
             car.set_starting_position()
+
+    def check_if_any_car_reached_destination(self):
+        for car in self.cars:
+            car.reached_destination(self.current_time)
+
+            # remove car from list?
+
+    def update_traffic_lights(self):
+        pass
+
+    def update_car_positions(self):
+        pass
+
+    def step(self):
+        self.check_if_any_car_reach_destination()
+
+
+
+        self.current_time += 1
+
 
 
 class Street():
@@ -73,5 +95,9 @@ class Car():
     def set_starting_position(self):
         self.position = self.route[0]
 
+    def reached_destination(self, end_time):
+        if self.position == self.route[-1]:
+            self.end_time = end_time
+            self.destination = True
 
 load_data(filename)

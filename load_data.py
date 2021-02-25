@@ -80,7 +80,8 @@ class Street():
         self.i2 = intersect2
 
         self.green = False
-
+        self.has_been_green = False 
+        
         self.name = name
         self.length = length
 

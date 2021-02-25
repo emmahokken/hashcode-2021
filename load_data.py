@@ -46,6 +46,9 @@ class Simulation():
     def load_cars(self, cars):
         self.cars = cars
 
+        for car in self.cars:
+            car.set_starting_position()
+
 
 class Street():
     def __init__(self, intersect1, intersect2, name, length):
@@ -66,6 +69,9 @@ class Car():
 
     def add_path(self, path):
         self.route.append(path)
+
+    def set_starting_position(self):
+        self.position = self.route[0]
 
 
 load_data(filename)

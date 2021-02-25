@@ -35,7 +35,7 @@ def load_data(filename):
 class Simulation():
     def __init__(self, seconds, intersections, no_streets, no_cars, score):
         self.sim_time = seconds
-        self.no_isects = intersections
+        self.no_insects = intersections
         self.no_streets = no_streets
         self.no_cars = no_cars
         self.score_per_car = score

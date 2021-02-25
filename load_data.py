@@ -76,6 +76,27 @@ class Simulation():
     def update_car_positions(self):
         pass
 
+    def count_intersections_scheduled(self):
+        intersections_scheduled = 0
+        for intersection in self.intersections:
+            if intersection.scheduled:
+                intersections_scheduled += 1
+        return intersections_scheduled
+
+    def write_out_file(self):
+        intersections_scheduled = self.count_intersections_scheduled()
+
+        assert intersections_scheduled <= self.no_insects, 'something went wrong with counting'
+
+        with open('./results/' + self.version + '.txt', w) as resultsFile:
+            writer = csv.writer(resultsFile)
+            writer.writerow([intersections_scheduled])
+        
+        for intersection in self.intersections:
+            for street in intersection.streets:
+                if street.traffic_light.has_been_green() or street.traffic_light.green():
+                    # write traffic lights in order
+
     def step(self):
         self.check_if_any_car_reach_destination()
         
@@ -88,6 +109,8 @@ class Simulation():
 class Intersection():
     def __init__(self):
         self.streets = []
+
+        self.scheduled = False
 
     def add_street(self, street):
         self.streets.append(street)

@@ -80,6 +80,8 @@ class Street():
         self.name = name
         self.length = length
 
+        self.traffi_light = TrafficLight()
+
     def __str__(self):
         return f"Street {self.name} from i {self.i1} to i {self.i2} of length {self.length}"
 

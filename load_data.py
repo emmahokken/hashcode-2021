@@ -65,8 +65,10 @@ class Simulation():
 
     def step(self):
         self.check_if_any_car_reach_destination()
+        
+        self.update_traffic_lights()
 
-
+        self.update_car_positions()
 
         self.current_time += 1
 
@@ -76,6 +78,9 @@ class Street():
     def __init__(self, intersect1, intersect2, name, length):
         self.i1 = intersect1
         self.i2 = intersect2
+
+        self.green = False
+
         self.name = name
         self.length = length
 

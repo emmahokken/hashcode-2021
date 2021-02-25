@@ -72,22 +72,31 @@ class Simulation():
 
         self.current_time += 1
 
-
-
 class Street():
     def __init__(self, intersect1, intersect2, name, length):
         self.i1 = intersect1
         self.i2 = intersect2
 
-        self.green = False
-        self.has_been_green = False 
-        
         self.name = name
         self.length = length
 
     def __str__(self):
         return f"Street {self.name} from i {self.i1} to i {self.i2} of length {self.length}"
 
+class TrafficLight():
+    def __init__(self):
+        self.green = False
+        self.has_been_green = False
+        
+        
+    def turn_green(self, time):
+        self.green = True
+        self.start = time 
+
+    def turn_red(self, time):
+        self.green = False
+        self.has_been_green = True
+        self.end = time
 
 class Car():
     def __init__(self, start):

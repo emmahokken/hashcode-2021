@@ -1,4 +1,5 @@
 from collections import defaultdict 
+import random
 
 filename = 'data/a.txt'
 
@@ -115,10 +116,17 @@ class Intersection():
     def add_street(self, street):
         self.streets.append(street)
 
-    # def __str__(self):
-    #     for street in self.streets:
-    #         print(street)
-    #     return 'hoi'
+        
+    def pick_light(self, street):
+        for street in self.streets:
+            street.traffic_light.
+        street = random.choice(self.streets)
+
+    def __str__(self):
+        street_str = ""
+        for street in self.streets:
+            street_str +- street + "\n"
+        return street_str
 
 class Street():
     def __init__(self, intersect1, intersect2, name, length):
